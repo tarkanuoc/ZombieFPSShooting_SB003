@@ -8,20 +8,24 @@ public class GrenadeLauncher : MonoBehaviour
     [SerializeField] private Transform firingPos;
     [SerializeField] private AudioSource shootingSound;
     [SerializeField] private Animator anim;
+    [SerializeField] private GunAmmo gunAmmo;
+
+
     public float bulletSpeed;
     private const int LeftMouseButton = 0;
     private void Update()
     {
         if (Input.GetMouseButtonDown(LeftMouseButton)) 
         {
-            //ShootBullet();
-            AddProjectile();
+            ShootBullet();
+           // AddProjectile();
         }
     }
 
     private void ShootBullet()
     {
         anim.SetTrigger("Shoot");
+        gunAmmo.SingleFireAmmoCounter();
     }
 
     public void PlayFireSound()

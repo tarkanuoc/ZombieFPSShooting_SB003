@@ -7,10 +7,6 @@ public class GunEventHandler : MonoBehaviour
     public void PlayRetrieveSound() { }
     public void DisableSelectAnim() { }
     public void SingleFireAmmoCounter() { }
-    public void AddProjectile() 
-    {
-        Debug.Log("======== AddProjectile");
-    }
     public void AddSingleFireEffects() { }
     public void PlayFireSound() { }
     public void AltFireToIdle() {
