@@ -23,8 +23,6 @@ public class MoveByKey : MonoBehaviour
             float vInput = Input.GetAxis("Vertical");
 
             moveDirection = transform.right * hInput + transform.forward * vInput;
-            // We are grounded, so recalculate move direction based on axes
-            // moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             moveDirection *= speed;
 
             if (Input.GetButton("Jump"))

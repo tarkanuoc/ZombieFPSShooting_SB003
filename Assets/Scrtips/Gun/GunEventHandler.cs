@@ -9,9 +9,7 @@ public class GunEventHandler : MonoBehaviour
     public void SingleFireAmmoCounter() { }
     public void AddSingleFireEffects() { }
     public void PlayFireSound() { }
-    public void AltFireToIdle() {
-        Debug.Log("======== AltFireToIdle");
-    }
+    public void AltFireToIdle() { }
     public void PlayReloadPart1Sound() { }
     public void PlayReloadPart2Sound() { }
     public void PlayReloadPart3Sound() { }
