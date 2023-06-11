@@ -66,6 +66,7 @@ MonoBehaviour:
     type: 3}
   explosionRadius: 4
   explosionForce: 20
+  damage: 50
 --- !u!1001 &4594258974933486641
 PrefabInstance:
   m_ObjectHideFlags: 0

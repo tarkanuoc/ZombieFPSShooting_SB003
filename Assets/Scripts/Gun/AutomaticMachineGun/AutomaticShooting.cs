@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +14,7 @@ public class AutomaticShooting : Shooting
     [SerializeField] UnityEvent onShoot;
     
     public int rpm;
-    
+    public int damage;
 
     private float lastShot;
     private float interval;
@@ -58,7 +59,17 @@ public class AutomaticShooting : Shooting
         if (Physics.Raycast(aimingRay, out RaycastHit hitInfo, 1000f, layerMask)) 
         {
             Quaternion effectRotation = Quaternion.LookRotation(hitInfo.normal);
-            Instantiate(hitMarkerPrefab, hitInfo.point, effectRotation);    
+            Instantiate(hitMarkerPrefab, hitInfo.point, effectRotation);
+            DeliverDamage(hitInfo);
+        }
+    }
+
+    private void DeliverDamage(RaycastHit hitInfo)
+    { 
+        Health health = hitInfo.collider.GetComponentInParent<Health>();
+        if (health != null) 
+        {
+            health.TakeDamage(damage);
         }
     }
 }
