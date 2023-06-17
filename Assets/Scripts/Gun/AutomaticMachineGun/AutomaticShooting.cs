@@ -8,11 +8,11 @@ public class AutomaticShooting : Shooting
 {
     [SerializeField] private Animator anim;
     [SerializeField] private AudioSource shootSound;
-    [SerializeField] private GameObject hitMarkerPrefab;
+    //[SerializeField] private GameObject hitMarkerPrefab;
     [SerializeField] private Camera aimingCamera;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] UnityEvent onShoot;
-    
+
     public int rpm;
     public int damage;
 
@@ -50,24 +50,38 @@ public class AutomaticShooting : Shooting
         shootSound.Play();
         PerformRaycasting();
         onShoot?.Invoke();
-        
+
     }
 
     private void PerformRaycasting()
     {
         Ray aimingRay = new Ray(aimingCamera.transform.position, aimingCamera.transform.forward);
-        if (Physics.Raycast(aimingRay, out RaycastHit hitInfo, 1000f, layerMask)) 
+        if (Physics.Raycast(aimingRay, out RaycastHit hitInfo, 1000f, layerMask))
         {
-            Quaternion effectRotation = Quaternion.LookRotation(hitInfo.normal);
-            Instantiate(hitMarkerPrefab, hitInfo.point, effectRotation);
+            ShowHitEffect(hitInfo);
             DeliverDamage(hitInfo);
         }
     }
 
+    private void ShowHitEffect(RaycastHit hitInfo)
+    {
+        HitSurface hitSurface = hitInfo.collider.GetComponent<HitSurface>();
+        if (hitSurface != null)
+        {
+            var hitManaer = HitEffectManager.Instance;
+            GameObject effectPrefab = hitManaer.GetEffectPrefab(hitSurface.surfaceType);
+            if (effectPrefab != null) 
+            {
+                Quaternion effectRotation = Quaternion.LookRotation(hitInfo.normal);
+                Instantiate(effectPrefab, hitInfo.point, effectRotation);
+            }
+        }
+    }
+
     private void DeliverDamage(RaycastHit hitInfo)
-    { 
+    {
         Health health = hitInfo.collider.GetComponentInParent<Health>();
-        if (health != null) 
+        if (health != null)
         {
             health.TakeDamage(damage);
         }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum HitSurfaceType
-{ 
+{
     Dirt = 0,
-    Blood =1
+    Blood = 1
 }
 
 [Serializable]
@@ -16,7 +16,12 @@ public class HitEffectMapper
     public GameObject effectPrefab;
 }
 
-public class HitEffectManager : MonoBehaviour
+public class HitEffectManager : Singleton<HitEffectManager>
 {
     public HitEffectMapper[] effectMap;
+     public GameObject GetEffectPrefab(HitSurfaceType surfaceType)
+    {
+        var mapper = System.Array.Find(effectMap, x => x.surface == surfaceType);
+        return mapper?.effectPrefab;
+    }
 }
