@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using DG;
+using DG.Tweening;
 
 public class ZombieMovement : MonoBehaviour
 {
@@ -35,9 +37,11 @@ public class ZombieMovement : MonoBehaviour
             agent.isStopped = true;
             anim.SetBool("IsWalking", false);
         }
+
         if (agent.isOnOffMeshLink && !isJumping)
         {
-            StartCoroutine(Jump(agent));
+            // StartCoroutine(Jump(agent));
+            JumpDoTween(agent);
             isJumping = true;
         }
 
@@ -48,7 +52,7 @@ public class ZombieMovement : MonoBehaviour
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;
         Vector3 endPos = data.endPos;
-        float duration = 1.0f; // Thời gian nhảy, bạn có thể điều chỉnh nó.
+        float duration = 1.0f; 
 
         float normalizedTime = 0.0f;
         while (normalizedTime < 1.0f)
@@ -61,5 +65,19 @@ public class ZombieMovement : MonoBehaviour
 
         agent.CompleteOffMeshLink();
         isJumping = false;
+    }
+
+    private void JumpDoTween(NavMeshAgent agent)
+    {
+        Debug.Log("=========== Jump DOTween");
+        OffMeshLinkData data = agent.currentOffMeshLinkData;
+        Vector3 startPos = agent.transform.position;
+        Vector3 endPos = data.endPos;
+        float duration = 2.0f;
+
+        agent.transform.DOJump(endPos, jumpHeight, 1, duration, true).OnComplete(() => {
+            agent.CompleteOffMeshLink();
+            isJumping = false;
+        });
     }
 }

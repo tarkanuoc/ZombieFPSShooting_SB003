@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 12836778}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: StartPoint1
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12836777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.5, y: 0.08, z: 11.2}
+  m_LocalPosition: {x: 24.8, y: 2.991, z: 15.632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1533,7 +1533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221951136}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: EndPoint1
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6100,7 +6100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744156147}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 19.96, y: 0, z: 24.27}
+  m_LocalPosition: {x: 25.2, y: 3, z: 14.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7875,7 +7875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988991571}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: EndPoint2
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9564,7 +9564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1157729419}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: StartPoint2
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -16081,7 +16081,7 @@ PrefabInstance:
     - target: {fileID: 9106741146491561424, guid: 39513f67d31e96443860712fa0746037,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.41
+      value: 19.65
       objectReference: {fileID: 0}
     - target: {fileID: 9106741146491561424, guid: 39513f67d31e96443860712fa0746037,
         type: 3}
@@ -16091,7 +16091,7 @@ PrefabInstance:
     - target: {fileID: 9106741146491561424, guid: 39513f67d31e96443860712fa0746037,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.31
+      value: 23.08
       objectReference: {fileID: 0}
     - target: {fileID: 9106741146491561424, guid: 39513f67d31e96443860712fa0746037,
         type: 3}
@@ -16152,7 +16152,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -16180,7 +16180,7 @@ MonoBehaviour:
   anim: {fileID: 1986156974}
   agent: {fileID: 1986156975}
   reachingRadius: 2
-  jumpHeight: 2
+  jumpHeight: 3
 --- !u!1 &1994425277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1270879658800896, guid: c21252cbe01eccd4a967b728d0b09f5a,
