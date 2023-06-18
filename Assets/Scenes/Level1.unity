@@ -6067,6 +6067,7 @@ GameObject:
   - component: {fileID: 744156150}
   - component: {fileID: 744156151}
   - component: {fileID: 744156152}
+  - component: {fileID: 744156153}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -6158,6 +6159,22 @@ MonoBehaviour:
   guns:
   - {fileID: 1310480620}
   - {fileID: 1695973293}
+--- !u!114 &744156153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744156147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e27e882b6bedbf43bfaa562426d0ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHP: 100
 --- !u!4 &746707676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1632770330667065527, guid: 453de79b774d92843936ad369bd9d85c,
@@ -16128,7 +16145,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1219251824515909783, guid: 39513f67d31e96443860712fa0746037, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39513f67d31e96443860712fa0746037, type: 3}
 --- !u!4 &1986156971 stripped
 Transform:
@@ -16181,6 +16199,92 @@ MonoBehaviour:
   agent: {fileID: 1986156975}
   reachingRadius: 2
   jumpHeight: 3
+  onDestinationReacher:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1986156979}
+        m_TargetAssemblyTypeName: ZombieAttack, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onStartMoving:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1986156979}
+        m_TargetAssemblyTypeName: ZombieAttack, Assembly-CSharp
+        m_MethodName: StopAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1986156977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6887120411337937632, guid: 39513f67d31e96443860712fa0746037,
+    type: 3}
+  m_PrefabInstance: {fileID: 1986156970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244685224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67136b60945fe41489cfe4a2a6799bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1986156979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244685224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e908c771f1a824182175f2782150db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1986156974}
+  playerHealth: {fileID: 744156153}
+  damage: 10
+--- !u!114 &1986156980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244685224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96192d27c553b0b4789eba0bcc22d488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1986156977}
+        m_TargetAssemblyTypeName: RagdollSwitcher, Assembly-CSharp
+        m_MethodName: EnableRagdoll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  maxHP: 100
+  agent: {fileID: 1986156975}
 --- !u!1 &1994425277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1270879658800896, guid: c21252cbe01eccd4a967b728d0b09f5a,

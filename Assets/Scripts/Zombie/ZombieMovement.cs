@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class ZombieMovement : MonoBehaviour
 {
@@ -14,6 +15,36 @@ public class ZombieMovement : MonoBehaviour
     public float reachingRadius;
     public float jumpHeight = 2f;
     private bool isJumping = false;
+    private bool _isMoving;
+
+    public UnityEvent onDestinationReacher;
+    public UnityEvent onStartMoving;
+
+    public bool IsMoving
+    {
+        get => _isMoving;
+        set
+        {
+            if (_isMoving == value) return;
+            _isMoving = value;
+            OnIsMovingValueChanged();
+        }
+    }
+
+    private void OnIsMovingValueChanged()
+    {
+        agent.isStopped = !_isMoving;
+        anim.SetBool("IsWalking", _isMoving);
+        if (_isMoving)
+        {
+            onStartMoving.Invoke();
+        }
+        else
+        {
+            onDestinationReacher.Invoke();
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         var color = Color.red;
@@ -26,17 +57,18 @@ public class ZombieMovement : MonoBehaviour
     private void Update()
     {
         float distance = Vector3.Distance(transform.position, playerFoot.position);
-        if (distance > reachingRadius)
+        IsMoving = distance > reachingRadius;
+        if (IsMoving)
         {
-            agent.isStopped = false;
+            // agent.isStopped = false;
             agent.SetDestination(playerFoot.position);
-            anim.SetBool("IsWalking", true);
+            //anim.SetBool("IsWalking", true);
         }
-        else
-        {
-            agent.isStopped = true;
-            anim.SetBool("IsWalking", false);
-        }
+        //else
+        //{
+        //   // agent.isStopped = true;
+        //   // anim.SetBool("IsWalking", false);
+        //}
 
         if (agent.isOnOffMeshLink && !isJumping)
         {
@@ -52,7 +84,7 @@ public class ZombieMovement : MonoBehaviour
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;
         Vector3 endPos = data.endPos;
-        float duration = 1.0f; 
+        float duration = 1.0f;
 
         float normalizedTime = 0.0f;
         while (normalizedTime < 1.0f)
@@ -75,7 +107,8 @@ public class ZombieMovement : MonoBehaviour
         Vector3 endPos = data.endPos;
         float duration = 2.0f;
 
-        agent.transform.DOJump(endPos, jumpHeight, 1, duration, true).OnComplete(() => {
+        agent.transform.DOJump(endPos, jumpHeight, 1, duration, true).OnComplete(() =>
+        {
             agent.CompleteOffMeshLink();
             isJumping = false;
         });

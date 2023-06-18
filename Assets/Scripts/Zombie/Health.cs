@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
     [SerializeField] private UnityEvent onDie;
     public int maxHP;
     private int healthPoint;
@@ -20,7 +19,7 @@ public class Health : MonoBehaviour
         return healthPoint <= 0;
     }
 
-    public void TakeDamage(int damage) 
+    public void TakeDamage(int damage)
     {
         if (IsDead())
         {
@@ -29,15 +28,15 @@ public class Health : MonoBehaviour
 
         healthPoint -= damage;
 
-        if(IsDead()) 
+        if (IsDead())
         {
             Die();
         }
     }
 
-    private void Die()
+    public virtual void Die()
     {
-        anim.SetTrigger("Die");
+        Debug.Log("============= Dieeeeeee");
         onDie?.Invoke();
     }
 }
