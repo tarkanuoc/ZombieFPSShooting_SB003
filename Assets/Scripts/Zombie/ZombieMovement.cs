@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,7 +10,8 @@ public class ZombieMovement : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] NavMeshAgent agent;
     public float reachingRadius;
-
+    public float jumpHeight = 2f;
+    private bool isJumping = false;
     void OnDrawGizmosSelected()
     {
         var color = Color.red;
@@ -34,6 +35,31 @@ public class ZombieMovement : MonoBehaviour
             agent.isStopped = true;
             anim.SetBool("IsWalking", false);
         }
-        
+        if (agent.isOnOffMeshLink && !isJumping)
+        {
+            StartCoroutine(Jump(agent));
+            isJumping = true;
+        }
+
+    }
+
+    IEnumerator Jump(NavMeshAgent agent)
+    {
+        OffMeshLinkData data = agent.currentOffMeshLinkData;
+        Vector3 startPos = agent.transform.position;
+        Vector3 endPos = data.endPos;
+        float duration = 1.0f; // Thời gian nhảy, bạn có thể điều chỉnh nó.
+
+        float normalizedTime = 0.0f;
+        while (normalizedTime < 1.0f)
+        {
+            float yOffset = jumpHeight * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
+            agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
+            normalizedTime += Time.deltaTime / duration;
+            yield return null;
+        }
+
+        agent.CompleteOffMeshLink();
+        isJumping = false;
     }
 }
