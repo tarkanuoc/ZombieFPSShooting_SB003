@@ -18,8 +18,20 @@ public class ZombieAttack : MonoBehaviour
         anim.SetBool("IsAttacking", false);
     }
 
-    public void OnAttack()
+    public void OnAttack(int index)
     {
         playerHealth.TakeDamage(damage);
+
+        if (index == 1)
+        {
+            Debug.Log("====== show right scratch");
+            Player.Instance.PlayerUI.ShowRightScratch();
+        }
+        else
+        {
+            Debug.Log("====== show left scratch");
+            Player.Instance.PlayerUI.ShowLeftScratch();
+        }
+
     }
 }

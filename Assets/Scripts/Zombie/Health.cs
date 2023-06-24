@@ -6,8 +6,19 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] private UnityEvent onDie;
+    [SerializeField] private UnityEvent<int, int> onHealthChange;
+    [SerializeField] private UnityEvent OnTakeDamage;
     public int maxHP;
     private int healthPoint;
+    public int HealthPoint
+    {
+        get => healthPoint;
+        set
+        {
+            healthPoint = value;
+            onHealthChange.Invoke(healthPoint, maxHP);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +37,8 @@ public class Health : MonoBehaviour
             return;
         }
 
-        healthPoint -= damage;
+        HealthPoint -= damage;
+        OnTakeDamage.Invoke();
 
         if (IsDead())
         {
