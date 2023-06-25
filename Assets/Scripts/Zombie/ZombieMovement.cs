@@ -56,6 +56,12 @@ public class ZombieMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsGameReady)
+        {
+            agent.isStopped = true;
+            return;
+        }
+        
         float distance = Vector3.Distance(transform.position, playerFoot.position);
         IsMoving = distance > reachingRadius;
         if (IsMoving)

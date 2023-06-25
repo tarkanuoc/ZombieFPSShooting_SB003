@@ -8,6 +8,11 @@ public class GunSwitcher : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsGameReady)
+        {
+            return;
+        }
+
         for (int i = 0; i < guns.Length; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i)
@@ -18,7 +23,7 @@ public class GunSwitcher : MonoBehaviour
         }
     }
 
-    private void SetActiveGun(int gunIndex)
+    public void SetActiveGun(int gunIndex)
     {
         for (int i = 0; i < guns.Length; i++)
         {

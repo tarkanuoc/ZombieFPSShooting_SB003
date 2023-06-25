@@ -26,6 +26,11 @@ public class AutomaticShooting : Shooting
 
     private void Update()
     {
+        if (!GameManager.Instance.IsGameReady)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0))
         {
             UpdateFiring();

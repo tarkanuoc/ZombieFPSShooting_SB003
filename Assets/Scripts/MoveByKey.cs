@@ -15,6 +15,10 @@ public class MoveByKey : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsGameReady)
+        {
+            return;
+        }
         // characterController.SimpleMove(direction * movingSpeed);
 
         if (characterController.isGrounded)

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
+    public bool IsDontDestroyOnload;
+    private static bool _isDontDestroyOnload;
     public static T Instance
     {
         get
@@ -12,7 +14,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 T instanceInScene = FindObjectOfType<T>();
-                RegisterInstance(instanceInScene);
+
+                RegisterInstance(instanceInScene, _isDontDestroyOnload);
             }
             return _instance;
         }
@@ -20,9 +23,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     private void Awake()
     {
+        _isDontDestroyOnload = IsDontDestroyOnload;
         if (_instance == null)
         {
-            RegisterInstance((T)(MonoBehaviour)this);
+            RegisterInstance((T)(MonoBehaviour)this, IsDontDestroyOnload);
         }
         else if (_instance != this)
         {
@@ -30,11 +34,15 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    private static void RegisterInstance(T newInstance)
+    private static void RegisterInstance(T newInstance, bool isDontDestroyOnload)
     {
         if (newInstance == null) return;
         _instance = newInstance;
-        DontDestroyOnLoad(_instance.transform.root);
+
+        if (isDontDestroyOnload)
+        {
+            DontDestroyOnLoad(_instance.transform.root);
+        }
     }
 
 }

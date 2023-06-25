@@ -21,8 +21,11 @@ public class RotateByMouse : MonoBehaviour
 
     private void Update()
     {
-        UpdateYaw();
-        UpdatePitch();
+        if (GameManager.Instance.IsGameReady)
+        { 
+            UpdateYaw();
+            UpdatePitch();
+        }
     }
 
     private void UpdateYaw()
