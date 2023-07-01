@@ -10,5 +10,6 @@ public class HealthZombie : Health
     {
         base.Die();
         agent.isStopped = true;
+        Destroy(gameObject, 3f);
     }
 }

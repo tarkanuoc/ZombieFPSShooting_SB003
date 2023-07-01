@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class ZombieMovement : MonoBehaviour
 {
-    [SerializeField] private Transform playerFoot;
+   // [SerializeField] private Transform playerFoot;
     [SerializeField] private Animator anim;
     [SerializeField] NavMeshAgent agent;
     public float reachingRadius;
@@ -61,7 +61,13 @@ public class ZombieMovement : MonoBehaviour
             agent.isStopped = true;
             return;
         }
-        
+        var playerFoot = Player.Instance.PlayerFoot;   
+
+        if (playerFoot == null) 
+        {
+            return;
+        }
+
         float distance = Vector3.Distance(transform.position, playerFoot.position);
         IsMoving = distance > reachingRadius;
         if (IsMoving)

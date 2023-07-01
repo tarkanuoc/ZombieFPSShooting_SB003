@@ -9,5 +9,6 @@ public class HealthPlayer : Health
         base.Die();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        GamePlayUI.Instance.OnGameOver();
     }
 }

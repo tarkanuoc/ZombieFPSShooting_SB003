@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BillBoard : MonoBehaviour
 {
-    [SerializeField] private Camera mainCamera;
+   private Camera mainCamera;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
 
     private void Update()
     {

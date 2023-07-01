@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveByKey : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private GameObject flashlight;
     public float movingSpeed;
     public float speed = 6.0f;
     public float jumpSpeed = 20.0f;
@@ -20,6 +21,11 @@ public class MoveByKey : MonoBehaviour
             return;
         }
         // characterController.SimpleMove(direction * movingSpeed);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        { 
+            flashlight.SetActive(!flashlight.activeSelf);
+        }
 
         if (characterController.isGrounded)
         {
