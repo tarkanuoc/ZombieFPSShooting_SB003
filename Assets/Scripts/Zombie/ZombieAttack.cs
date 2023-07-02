@@ -20,7 +20,7 @@ public class ZombieAttack : MonoBehaviour
 
     public void OnAttack(int index)
     {
-        var playerHealth = Player.Instance.PlayerHealth;
+        var playerHealth = GameHelper.Instance.Player.PlayerHealth;
 
         if (playerHealth == null) 
         {
@@ -32,12 +32,12 @@ public class ZombieAttack : MonoBehaviour
         if (index == 1)
         {
             Debug.Log("====== show right scratch");
-            Player.Instance.PlayerUI.ShowRightScratch();
+            GameHelper.Instance.Player.PlayerUI.ShowRightScratch();
         }
         else
         {
             Debug.Log("====== show left scratch");
-            Player.Instance.PlayerUI.ShowLeftScratch();
+            GameHelper.Instance.Player.PlayerUI.ShowLeftScratch();
         }
 
     }

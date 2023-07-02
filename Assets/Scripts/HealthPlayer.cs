@@ -7,8 +7,6 @@ public class HealthPlayer : Health
     public override void Die()
     {
         base.Die();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        GamePlayUI.Instance.OnGameOver();
+        GameHelper.Instance.GamePlayUI.OnGameOver();
     }
 }

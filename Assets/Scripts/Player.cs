@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Singleton<Player>
+public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerUI playerUI;
     [SerializeField] private GunSwitcher gunSwitcher;

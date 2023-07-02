@@ -16,7 +16,7 @@ public class HitEffectMapper
     public GameObject effectPrefab;
 }
 
-public class HitEffectManager : Singleton<HitEffectManager>
+public class HitEffectManager : MonoBehaviour
 {
     public HitEffectMapper[] effectMap;
      public GameObject GetEffectPrefab(HitSurfaceType surfaceType)

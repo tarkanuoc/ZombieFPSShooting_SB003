@@ -9,6 +9,7 @@ public class HealthZombie : Health
     public override void Die()
     {
         base.Die();
+        GameHelper.Instance.MissionManager.OnZombieKilled();
         agent.isStopped = true;
         Destroy(gameObject, 3f);
     }

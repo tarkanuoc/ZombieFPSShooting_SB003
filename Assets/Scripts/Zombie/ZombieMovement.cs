@@ -61,7 +61,7 @@ public class ZombieMovement : MonoBehaviour
             agent.isStopped = true;
             return;
         }
-        var playerFoot = Player.Instance.PlayerFoot;   
+        var playerFoot = GameHelper.Instance.Player.PlayerFoot;   
 
         if (playerFoot == null) 
         {

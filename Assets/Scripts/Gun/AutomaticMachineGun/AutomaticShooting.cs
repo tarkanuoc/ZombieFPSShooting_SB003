@@ -73,7 +73,7 @@ public class AutomaticShooting : Shooting
         HitSurface hitSurface = hitInfo.collider.GetComponent<HitSurface>();
         if (hitSurface != null)
         {
-            var hitManaer = HitEffectManager.Instance;
+            var hitManaer = GameHelper.Instance.HitEffectManager;
             GameObject effectPrefab = hitManaer.GetEffectPrefab(hitSurface.surfaceType);
             if (effectPrefab != null) 
             {

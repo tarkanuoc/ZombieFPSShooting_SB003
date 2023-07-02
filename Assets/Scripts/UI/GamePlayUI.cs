@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePlayUI : Singleton<GamePlayUI>
+public class GamePlayUI : MonoBehaviour
 {
     [SerializeField] private GameObject popUpGameOver;
     [SerializeField] private GameObject popUpGameWin;
@@ -11,7 +11,7 @@ public class GamePlayUI : Singleton<GamePlayUI>
     {
         if (popUpGameOver != null)
         {
-            Time.timeScale = 0f;
+           
             popUpGameOver.SetActive(true);
         }
     }
@@ -20,9 +20,21 @@ public class GamePlayUI : Singleton<GamePlayUI>
     {
         if (popUpGameWin != null)
         {
-            Time.timeScale = 1f;
             popUpGameWin.SetActive(true);
         }
 
+    }
+
+    public void OnMissionCompleted()
+    {
+        OnGameWin();
+        StopGame();
+    }
+
+    public void StopGame() 
+    {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
